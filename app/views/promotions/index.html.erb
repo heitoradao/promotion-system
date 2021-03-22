@@ -1,9 +1,9 @@
 <% @promotion.each do |promotion| %>
-  <h3>Natal</h3>
+  <h3><%= promotion.name %></h3>
   <dl>
     <dt>Descrição</dt>
-    <dd>Promoção de Natal</dd>
+    <dd><%= promotion.description %></dd>
     <dt>Desconto <small>em porcentagem</small></dt>
-    <dd>10,00%</dd>
+    <dd><%= promotion.discount_rate %></dd>
   </dl>
 <% end %>
