@@ -21,5 +21,30 @@ class PromotionTest < ApplicationSystemTestCase
     assert_text 'Promoção de Cyber Monday'
     assert_text '15,00%'
   end
+
+  test 'view promotion details' do
+    Promotion.create!(name:'Natal',
+                      description: 'Promoção de Natal',
+                      code: 'NATAL10',
+                      discount_rate: 10,
+                      coupon_quantity: 100,
+                      expiration_date: '22/12/2033')
+    Promotion.create!(name: 'Cyber Monday',
+                      coupon_quantity: 90,
+                      description: 'Promoção de Cyber Monday',
+                      code: 'CYBER15',
+                      discount_rate: 15,
+                      expiration_date: '22/12/2033')
+    Visit root_path
+    click_on 'Promoções'
+    click_on 'Cyber Monday'
+
+    assert_text 'Cyber Monday'
+    assert_text 'Promoção de Cyber Monday'
+    assert_text '15,00%'
+    assert_text 'CYBER15'
+    assert_text '22/12/2033'
+    assert_text '90'
+  end
 end
 
