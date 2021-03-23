@@ -60,5 +60,17 @@ class PromotionTest < ApplicationSystemTestCase
 
     assert_current_path root_path
   end
+
+  test 'view details and return to promotions page' do
+    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                      expiration_date: '22/12/2033')
+    visit root_path
+    click_on 'Promoções'
+    click_on 'Natal'
+    click_on 'Voltar'
+
+    assert_current_path promotions_path
+  end
 end
 
