@@ -16,4 +16,8 @@ class PromotionsController < ApplicationController
     flash[:notice] = 'Cupons gerados com sucesso'
     redirect_to @promotion
   end
+
+  def new
+    @promotion = Promotion.find(params[:id])
+  end
 end
