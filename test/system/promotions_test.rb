@@ -35,7 +35,7 @@ class PromotionTest < ApplicationSystemTestCase
                       code: 'CYBER15',
                       discount_rate: 15,
                       expiration_date: '22/12/2033')
-    Visit root_path
+    visit root_path
     click_on 'Promoções'
     click_on 'Cyber Monday'
 
@@ -45,6 +45,20 @@ class PromotionTest < ApplicationSystemTestCase
     assert_text 'CYBER15'
     assert_text '22/12/2033'
     assert_text '90'
+  end
+
+  test 'view promotions and return to home page' do
+    Promotion.create!(name: 'Natal',
+                      description: 'Promoção de Natal',
+                      code: 'NATAL10',
+                      discount_rate: 10,
+                      coupon_quantity: 100,
+                      expiration_date: '22/12/2033')
+    visit root_path
+    click_on 'Promoções'
+    click_on 'Voltar'
+
+    assert_current_path root_path
   end
 end
 
