@@ -6,7 +6,7 @@
   <dt><%= Promotion.human_attribute_name(:description) %></dt>
   <dd><%= @promotion.description %></dd>
   <dt><%= Promotion.human_attribute_name(:discount_rate) %></dt>
-  <dd><%= number_to_percentage @promotion.discount_rate, precision: 2 %></dd>
+  <dd><%= number_to_percentage @promotion.discount_rate, precision: 0 %></dd>
   <dt>Código</dt>
   <dd><%= @promotion.code %></dd>
   <dt>Data de término</dt>
