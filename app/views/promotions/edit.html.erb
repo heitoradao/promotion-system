@@ -1,7 +1,7 @@
-<h1>edit</h1>
-<pre>
-<%= pp @promotion.inspect %>
-</pre>
+<div class="container">
+  <h1>edit</h1>
+  <%= render 'form', promotion: @promotion %>
 
-<%= link_to 'Show', @promotion, class: 'btn btn-primary' %>
-<%= link_to 'Back', promotions_path, class: 'btn btn-primary' %>
+  <%= link_to 'Show', @promotion, class: 'btn btn-primary' %>
+  <%= link_to 'Back', promotions_path, class: 'btn btn-primary' %>
+</div>
