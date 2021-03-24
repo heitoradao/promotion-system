@@ -5,14 +5,12 @@ class PromotionTest < ActiveSupport::TestCase
     promotion = Promotion.new
 
     refute promotion.valid?
+
     assert_includes promotion.errors[:name], 'não pode ficar em branco'
     assert_includes promotion.errors[:code], 'não pode ficar em branco'
-    assert_includes promotion.errors[:discount_rate], 'não pode ficar em '\
-                                                      'branco'
-    assert_includes promotion.errors[:coupon_quantity], 'não pode ficar em'\
-                                                        ' branco'
-    assert_includes promotion.errors[:expiration_date], 'não pode ficar em'\
-                                                        ' branco'
+    assert_includes promotion.errors[:discount_rate], 'não pode ficar em branco'
+    assert_includes promotion.errors[:coupon_quantity], 'não pode ficar em branco'
+    assert_includes promotion.errors[:expiration_date], 'não pode ficar em branco'
   end
 
   test 'code must be uniq' do
@@ -22,7 +20,7 @@ class PromotionTest < ActiveSupport::TestCase
     promotion = Promotion.new(code: 'NATAL10')
 
     refute promotion.valid?
-    assert_includes promotion.errors[:code], 'deve ser único'
+    assert_includes promotion.errors[:code], 'já está em uso'
   end
 
   test 'name must be uniq' do
@@ -32,6 +30,6 @@ class PromotionTest < ActiveSupport::TestCase
     promotion = Promotion.new(name: 'Natal')
 
     refute promotion.valid?
-    assert_includes promotion.errors[:name], 'deve ser único'
+    assert_includes promotion.errors[:name], 'já está em uso'
   end
 end
