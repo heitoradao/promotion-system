@@ -1,9 +1,9 @@
 class Promotion < ApplicationRecord
-  has_many :coupon
+  has_many :coupons
 
   validates :name, :code, :discount_rate, :coupon_quantity,
-            :expiration_date, presence: { message: 'não pode ficar em branco' }
-  validates :code, :name, uniqueness: { message: 'deve ser único' }
+            :expiration_date, presence: true
+  validates :code, :name, uniqueness: true
 
   validate :expiration_date_cannot_be_in_the_past
 
@@ -18,6 +18,7 @@ class Promotion < ApplicationRecord
   private
 
   def expiration_date_cannot_be_in_the_past
-    #return unless expiration_date.present? && 
+    #return unless expiration_date.present? &&
+    raise NotImplementedError
   end
 end
