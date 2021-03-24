@@ -1,6 +1,6 @@
 class PromotionsController < ApplicationController
 
-  before_action :set_promotion, only: [:show, :generate_coupons]
+  before_action :set_promotion, only: %i[show generate_coupons edit]
 
   def index
     @promotions = Promotion.all
@@ -26,6 +26,9 @@ class PromotionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
   end
 
   private
