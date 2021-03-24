@@ -1,9 +1,21 @@
-<% @promotions.each do |promotion| %>
-  <h3><%= promotion.name %></h3>
-  <dl>
-    <dt>Descrição</dt>
-    <dd><%= promotion.description %></dd>
-    <dt>Desconto <small>em porcentagem</small></dt>
-    <dd><%= promotion.discount_rate %></dd>
-  </dl>
+<%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
+
+<%= link_to 'Registrar uma promoção', new_promotion_path, class: 'btn btn-primary' %>
+
+<% if @promotions.empty? %>
+  <h3>Nenhuma promoção cadastrada</h3>
 <% end %>
+
+<div class="container">
+  <% @promotions.each do |promotion| %>
+    <div class="container card">
+      <h3><%= link_to promotion.name, promotion %></h3>
+      <dl>
+        <dt>Descrição</dt>
+        <dd><%= promotion.description %></dd>
+        <dt>Desconto <small>em porcentagem</small></dt>
+        <dd><%= number_to_percentage promotion.discount_rate, precision: 2 %></dd>
+      </dl>
+    </div>
+  <% end %>
+</div>
