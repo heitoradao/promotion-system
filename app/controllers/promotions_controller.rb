@@ -7,14 +7,12 @@ class PromotionsController < ApplicationController
   end
 
   def show
-    @promotion = Promotion.find(params[:id])
+    
   end
 
   def generate_coupons
-    @promotion = Promotion.find(params[:id])
     @promotion.generate_coupons!
-    flash[:notice] = 'Cupons gerados com sucesso'
-    redirect_to @promotion
+    redirect_to @promotion, notice: t('.success')
   end
 
   def new
@@ -37,5 +35,9 @@ class PromotionsController < ApplicationController
         .require(:promotion)
         .permit(:name, :expiration_date, :description,
                 :discount_rate, :code, :coupon_quantity)
+    end
+
+    def set_promotion
+      @promotion = Promotion.find(params[:id])
     end
 end
