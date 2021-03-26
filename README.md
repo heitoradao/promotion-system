@@ -1,24 +1,5 @@
-# README
+[![Maintainability](https://api.codeclimate.com/v1/badges/2b2092796775eb5c2abb/maintainability)](https://codeclimate.com/github/heitoradao/promotion-system/maintainability)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Promotion System
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Este app gera códigos de coupons.
