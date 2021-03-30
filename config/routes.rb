@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :promotions #, only: [:index]
+  resources :promotions do
+    get 'search', on: :collection
+  end
 end
