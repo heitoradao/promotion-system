@@ -27,9 +27,22 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            <%= if user_signed_in?
+                  link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link'
+                else
+                  link_to 'Sign in', new_user_session_path, class: 'nav-link'
+                end %>
           </li>
 
+          <% if user_signed_in? %>
+            <li>
+              <%= form_with url: search_promotions_path, method: :get do |f| %>
+                <%= f.label :q, 'Busca' %>
+                <%= f.text_field :q %>
+                <%= f.submit 'Buscar' %>
+              <% end %>
+            </li>
+          <% end %>
           <%#
           <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
