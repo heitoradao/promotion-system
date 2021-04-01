@@ -4,5 +4,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :promotions #, only: [:index]
+  resources :promotions do
+    post 'generate_coupons', on: :member
+    get 'search', on: :collection
+  end
 end

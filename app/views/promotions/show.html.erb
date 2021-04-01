@@ -1,19 +1,21 @@
 <div class="container">
+  <br />
+  <%= render @promotion %>
 
-  <%= link_to t('buttons.back'), promotions_path, class: 'btn btn-primary' %>
 
-  <h3><%= @promotion.name %></h3>
-  <dl>
-    <dt><%= Promotion.human_attribute_name(:description) %></dt>
-    <dd><%= @promotion.description %></dd>
-    <dt><%= Promotion.human_attribute_name(:discount_rate) %></dt>
-    <dd><%= number_to_percentage @promotion.discount_rate, precision: 0 %></dd>
-    <dt>Código</dt>
-    <dd><%= @promotion.code %></dd>
-    <dt>Data de término</dt>
-    <dd><%= l @promotion.expiration_date %></dd>
-    <dt>Quantidade de cupons</dt>
-    <dd><%= @promotion.coupon_quantity %></dd>
-  </dl>
+  <% if @promotion.coupons.empty? %>
+    <%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %>
+  <% end %>
+
+  <% @promotion.coupons.each do |coupon| %>
+    <div id="coupon-<%= coupon.code.parameterize %>">
+      <p>
+        <%= coupon.code %> (<%= Coupon.human_attribute_name("status.#{coupon.status}") %>)
+      </p>
+      <% if coupon.active? %>
+        <%= link_to 'Desabilitar', disable_coupon_path(coupon), method: :post, data: { disable_with: 'Estamos desabilitando....' } %>
+      <% end %>
+    </div>
+  <% end %>
 
 </div>
