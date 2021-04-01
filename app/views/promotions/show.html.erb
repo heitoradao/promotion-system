@@ -4,7 +4,7 @@
 
 
   <% if @promotion.coupons.empty? %>
-    <%#= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %>
+    <%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %>
   <% end %>
 
   <% @promotion.coupons.each do |coupon| %>
