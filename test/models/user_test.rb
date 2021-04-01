@@ -17,7 +17,6 @@ class UserTest < ActiveSupport::TestCase
 
   test 'this test can generate a valid user' do
     u = create_a_valid_user
-    byebug
     assert u.valid?
   end
 
