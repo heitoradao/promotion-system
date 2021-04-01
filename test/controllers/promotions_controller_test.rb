@@ -7,16 +7,17 @@ class PromotionsControllerTest < ActionDispatch::IntegrationTest
     #@first = Promotion.find(2)
   end
 
-  test 'should get show' do
+  test 'should be redirected to signin if now logged, when trying to show show' do
     get promotion_path(2)
-    assert_response :success
-    byebug
-    assert_equal @response.body, "Cyber"
+    assert_redirected_to new_user_session_path
+    #assert_response :success
+    #byebug
+    #assert_equal @response.body, "Cyber"
   end
 
-  test 'should get index' do
+  test 'should be redirected if not logged in' do
     get promotions_path
-    assert_response :success
+    assert_redirected_to new_user_session_path
   end
 
   test 'should get new' do
