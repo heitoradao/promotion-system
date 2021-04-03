@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PromotionApiTest < ActionDispatch::IntegrationTest
-  test 'show coupon' do
+  test 'should get a successful answer for /api/v1/coupon' do
     user = User.create!(email: 'test@iugu.com.br',
                         password: '123456')
     promotion = Promotion.create!(name: 'Natal',
