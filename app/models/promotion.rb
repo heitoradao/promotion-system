@@ -1,5 +1,11 @@
 class Promotion < ApplicationRecord
+  belongs_to :user
   has_many :coupons
+  has_one :promotion_approval
+
+  has_one :approver,
+          through: :promotion_approval,
+          source: :user
 
   validates :name, :code, :discount_rate, :coupon_quantity,
             :expiration_date, presence: true

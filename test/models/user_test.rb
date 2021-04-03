@@ -1,15 +1,6 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  test "the truth" do
-    assert true
-  end
-
-  test 'user can be instantiated' do
-    u = User.new
-    refute u.nil?
-  end
-
   test 'empty user can not be valid' do
     u = User.new
     refute u.valid?
