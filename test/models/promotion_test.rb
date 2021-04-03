@@ -1,6 +1,11 @@
 require "test_helper"
 
 class PromotionTest < ActiveSupport::TestCase
+  test 'this test can create a valid Promotion' do
+    promotion = create_a_valid_promotion_without_save_it
+    assert promotion.valid?
+  end
+
   test 'attributes cannot be blank' do
     promotion = Promotion.new
 
@@ -53,6 +58,8 @@ class PromotionTest < ActiveSupport::TestCase
   private
 
     def create_a_valid_promotion_without_save_it
+      user = User.create(email: 'jane.doe@iugu.com.br', password: '123456')
+
       promotion = Promotion.new
       promotion.name = 'Páscoa Maluca'
       promotion.description = 'Promoção de Páscoa'
@@ -60,7 +67,8 @@ class PromotionTest < ActiveSupport::TestCase
       promotion.discount_rate = 20
       promotion.coupon_quantity = 200
       promotion.expiration_date = '20/04/2021'
+      promotion.user = user
 
-      return promotion
+      promotion
     end
 end
