@@ -28,6 +28,8 @@ class PromotionsTest < ApplicationSystemTestCase
   end
 
   test 'no promotion are available' do
+    login_user
+
     visit root_path
     click_on 'Promoções'
 
@@ -62,6 +64,8 @@ class PromotionsTest < ApplicationSystemTestCase
   end
 
   test 'create promotion' do
+    login_user
+
     visit root_path
     click_on 'Promoções'
     click_on 'Criar Promoção'
@@ -84,6 +88,8 @@ class PromotionsTest < ApplicationSystemTestCase
   end
 
   test 'create and attributes cannot be blank' do
+    login_user
+
     visit root_path
     click_on 'Promoções'
     click_on 'Criar Promoção'
@@ -93,6 +99,8 @@ class PromotionsTest < ApplicationSystemTestCase
   end
 
   test 'name must be unique' do
+    login_user
+
     create_promotion
 
     visit root_path
@@ -150,5 +158,14 @@ class PromotionsTest < ApplicationSystemTestCase
                                 discount_rate: 10,
                               coupon_quantity: 100,
                               expiration_date: '10/10/2022')
+  end
+
+  def login_user
+    u = User.create!(email: "teste1@iugu.com.br", password: "1234567")
+    login_as u, scope: :user
+  end
+
+  def login_as_john
+    login_as User.find_by(email: 'john.doe@iugu.com'), scope: :user
   end
 end

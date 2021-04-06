@@ -17,6 +17,12 @@ class UserTest < ActiveSupport::TestCase
     refute u.valid?
   end
 
+  test 'only emails at @iugu.com.br are accepted' do
+    outsider = User.create!(email: 'outsider@cracker.ru',
+                            password: '123456')
+    refute outsider.valid?
+  end
+
 
 
   private
