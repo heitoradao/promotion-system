@@ -4,7 +4,7 @@ class PromotionsController < ApplicationController
   before_action :set_promotion, only: %i[show generate_coupons edit destroy update]
 
   def index
-    @promotions = Promotion.all
+    @promotions = Promotion.where(user: current_user)
   end
 
   def show
