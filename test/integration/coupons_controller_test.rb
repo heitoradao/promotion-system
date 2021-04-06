@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CouponsControllerTest < ActionController::TestCase
+class CouponsControllerTest < ActionDispatch::IntegrationTest
 
   # :success - Status code was in the 200-299 range
   # :redirect - Status code was in the 300-399 range
