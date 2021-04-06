@@ -17,4 +17,8 @@ class PromotionApiTest < ActionDispatch::IntegrationTest
     get "/api/v1/coupons/#{coupon.code}"
     assert_response :success
   end
+
+  test 'should disable a coupon' do
+    raise NotImplementedError
+  end
 end
