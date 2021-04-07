@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class PromotionApiTest < ActionDispatch::IntegrationTest
+
+  test 'fabricator' do
+    users = Fabricate.times(2, :user)
+  end
+
+
   test 'should get a successful answer for /api/v1/coupon' do
     user = User.create!(email: 'test@iugu.com.br',
                         password: '123456')

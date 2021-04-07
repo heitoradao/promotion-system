@@ -27,6 +27,9 @@ class PromotionTest < ActiveSupport::TestCase
 
 
   test 'attributes must be uniq' do
+
+    Fabricate(:promotion)
+
     user = create_user
     first = create_a_valid_promotion(user)
     assert first.valid?
