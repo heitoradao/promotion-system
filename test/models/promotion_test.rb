@@ -25,8 +25,17 @@ class PromotionTest < ActiveSupport::TestCase
   end
 
 
+  test 'fabrication deveria conseguir gerar uma promotion válida' do
+    p = Fabricate(:promotion)
+    assert_instance_of(Promotion, p)
+    assert p.valid?
+  end
+
 
   test 'attributes must be uniq' do
+
+    Fabricate(:promotion)
+
     user = create_user
     first = create_a_valid_promotion(user)
     assert first.valid?
