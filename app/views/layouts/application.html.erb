@@ -21,11 +21,12 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <div class="container">
         <ul class="navbar-nav mr-auto">
-
           <li class="nav-item">
             <%= link_to 'Promoções', promotions_path, class: 'nav-link' %>
           </li>
-
+        </ul>
+      </div>
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <%= if user_signed_in?
                   link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link'
@@ -37,25 +38,13 @@
           <% if user_signed_in? %>
             <li>
               <%= form_with url: search_promotions_path, method: :get do |f| %>
-                <%= f.label :q, 'Busca' %>
                 <%= f.text_field :q %>
                 <%= f.submit 'Buscar' %>
               <% end %>
             </li>
           <% end %>
-          <%#
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          %>
-          </ul>
+        </ul>
         </div>
-      <%#
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-      %>
     </div>
   </nav>
 
