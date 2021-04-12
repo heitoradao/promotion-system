@@ -4,7 +4,7 @@ class PromotionsController < ApplicationController
   before_action :set_promotion, only: %i[show generate_coupons edit destroy update]
 
   def index
-    @promotions = Promotion.all
+    @promotions = Promotion.where(user: current_user)
   end
 
   def show
@@ -22,6 +22,7 @@ class PromotionsController < ApplicationController
 
   def create
     @promotion = Promotion.new(promotion_params)
+    @promotion.user = current_user
     if @promotion.save
       redirect_to @promotion
     else
@@ -70,5 +71,11 @@ class PromotionsController < ApplicationController
 
     def set_promotion
       @promotion = Promotion.find(params[:id])
+    end
+
+    def approve
+      #current_user.promotion_approvals.create!(promotion: @promotion)
+      PromotionMailer.approval_email.deliver_now
+      redirect_to @promotion, notice: 'Promoção aprovada com sucesso'
     end
 end

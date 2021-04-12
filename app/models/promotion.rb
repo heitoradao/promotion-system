@@ -1,5 +1,11 @@
 class Promotion < ApplicationRecord
+  belongs_to :user
   has_many :coupons
+  has_one :promotion_approval
+
+  has_one :approver,
+          through: :promotion_approval,
+          source: :user
 
   validates :name, :code, :discount_rate, :coupon_quantity,
             :expiration_date, presence: true
@@ -20,6 +26,17 @@ class Promotion < ApplicationRecord
     coupons.any?
   end
 
+  scope :search, ->(query) {
+    where(
+      SEARCHABLE_FIELDS
+        .map { |field| "#{field} LIKE :query" }
+        .join(' OR '),
+      query: "%#{query}%")
+    .limit(5)
+  }
+
+  scope :available, -> { where('expiration_date >= ?', Time.zone.now) }
+
   def self.search(query)
     where(
       SEARCHABLE_FIELDS
@@ -27,5 +44,13 @@ class Promotion < ApplicationRecord
         .join(' OR '),
       query: "%#{query}%")
     .limit(5)
+  end
+
+  def approved?
+    promotion_approval.present?
+  end
+
+  def can_approve?(current_user)
+    user != current_user
   end
 end

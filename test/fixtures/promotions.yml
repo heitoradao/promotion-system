@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-#  name: MyString
-#  description: MyText
-#  code: MyString
-#  discount: 9.99
-#  coupon_quantity: 1
-#  expiration_date: 2021-03-17
+one:
+  name: Promoção de teste 1
+  description: MyText
+  code: FIXTURE01
+  discount_rate: 10.00
+  coupon_quantity: 10
+  expiration_date: 2021-01-10
 
-#two:
-#  name: MyString
-#  description: MyText
-#  code: MyString
-#  discount: 9.99
-#  coupon_quantity: 1
-#  expiration_date: 2021-03-17
+two:
+  name: Promoção de teste 2
+  description: Promoção criada em fixture! n. 2
+  code: FIXTURE02
+  discount_rate: 20.00
+  coupon_quantity: 20
+  expiration_date: 2022-02-20
