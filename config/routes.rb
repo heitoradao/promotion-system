@@ -21,4 +21,6 @@ Rails.application.routes.draw do
       resources :coupons, only: [:show, :destroy], param: :code
     end
   end
+
+  resources :categoria_produtos
 end
